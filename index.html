@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sivanesh S | Interactive Portfolio</title>
+  <meta name="description" content="Cinematic portfolio for Sivanesh S - Computer Science Engineer & Software Developer." />
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <main class="site-shell">
+    <section class="cinema-scroll" id="cinema" aria-label="Sivanesh S cinematic scroll story">
+      <div class="stage">
+        <div class="world">
+          <canvas class="scrub-canvas" id="scrubCanvas" aria-hidden="true"></canvas>
+
+          <header class="site-header" aria-label="Primary navigation">
+            <a class="site-logo" href="#cinema">Sivanesh S</a>
+            <button class="language-switcher" aria-label="Change language">
+              <span>EN</span>
+              <span aria-hidden="true">⌄</span>
+            </button>
+          </header>
+
+          <h1 class="hero-title">SIVANESH</h1>
+
+          <div class="cosmic-overlay" id="projects" aria-hidden="true">
+            <div class="cosmic-glow cosmic-glow-a"></div>
+            <div class="cosmic-glow cosmic-glow-b"></div>
+            <div class="cosmic-stars"></div>
+          </div>
+
+          <div class="duo-pair duo-pair-1">
+            <article class="duo-card duo-card-left" data-card="A">
+              <div class="duo-card-inner">
+                <span class="duo-eyebrow">Portfolio</span>
+                <h3 class="duo-title">Projects</h3>
+                <div class="duo-body">
+                  <ul>
+                    <li>Task Management System</li>
+                    <li>Web Vulnerability Scanner</li>
+                    <li>Bulk Email Automation</li>
+                  </ul>
+                </div>
+                <div class="duo-tags">
+                  <span>Java</span><span>Spring Boot</span><span>MySQL</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="duo-card duo-card-right" data-card="B">
+              <div class="duo-card-inner">
+                <span class="duo-eyebrow">Technical Skills</span>
+                <h3 class="duo-title">Skills</h3>
+                <div class="duo-body">
+                  <p>Core languages, frameworks, and tooling used day to day.</p>
+                </div>
+                <div class="duo-tags">
+                  <span>Java</span><span>SQL</span><span>HTML</span><span>CSS</span><span>Git</span><span>GitHub</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="duo-pair duo-pair-2">
+            <article class="duo-card duo-card-left" data-card="C">
+              <div class="duo-card-inner">
+                <span class="duo-eyebrow">Experience</span>
+                <h3 class="duo-title">Work Experience</h3>
+                <div class="duo-body">
+                  <p>Cybersecurity Intern<br />NEXTSKILLS Technologies Pvt. Ltd.<br />July 2025</p>
+                </div>
+                <div class="duo-tags">
+                  <span>Security</span><span>Automation</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="duo-card duo-card-right" data-card="D">
+              <div class="duo-card-inner">
+                <span class="duo-eyebrow">Education</span>
+                <h3 class="duo-title">Education</h3>
+                <div class="duo-body">
+                  <p>B.E. Computer Science and Engineering<br />University College of Engineering, BIT Campus, Trichy<br />2022 – 2026</p>
+                </div>
+                <div class="duo-tags">
+                  <span>2022 – 2026</span>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- Contact: now a full premium card, matching the duo-card design system.
+               Raw email / GitHub URL are no longer printed as text — action buttons
+               open the mail client and the GitHub profile instead. -->
+          <aside class="contact-mini" id="contact" aria-label="Contact" data-card="E">
+            <div class="contact-mini-inner">
+              <span class="duo-eyebrow">Get In Touch</span>
+              <h3 class="duo-title">Contact</h3>
+              <div class="duo-body">
+                <p>Open to opportunities, collaborations, and a good technical conversation.</p>
+              </div>
+              <div class="contact-actions">
+                <a class="contact-btn contact-btn-primary" href="mailto:sivaneshsivan18@gmail.com">
+                  Send Email
+                </a>
+                <a class="contact-btn contact-btn-secondary" href="https://github.com/Sivanesh1004" target="_blank" rel="noopener">
+                  View GitHub
+                </a>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <section class="intro-copy" aria-label="Sivanesh overview">
+          <p>Motivated Computer Science undergraduate with hands-on experience in Java Full Stack Development, MySQL, and workflow automation.</p>
+          <div class="hero-tags" aria-label="Core competencies">
+            <span>Core Java</span>
+            <span>REST APIs</span>
+            <span>n8n Automation</span>
+          </div>
+        </section>
+
+        <section class="story-panel story-panel-bridge" id="skills" aria-label="Technical skills details">
+          <h2>Engineering Foundation</h2>
+          <p>Proficient in Object-Oriented Programming, backend technologies, database design, and web application security.</p>
+          <dl class="facts">
+            <div>
+              <dt>2026</dt>
+              <dd>Graduating B.E. CS Undergraduate</dd>
+            </div>
+            <div>
+              <dt>100%</dt>
+              <dd>Manual Email Dispatch Effort Reduced</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section class="story-panel story-panel-bazaar" id="experience" aria-label="Experience details">
+          <h2>Practical Systems & Work</h2>
+          <p>Cybersecurity Intern at NEXTSKILLS Technologies. Building scalable software solutions, automated workflows, and security tools.</p>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

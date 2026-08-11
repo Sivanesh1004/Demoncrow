@@ -1,0 +1,331 @@
+@font-face {
+  font-family: "Blood Crow";
+  src: url("bloodcrow.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Docktrin";
+  src: url("docktrin.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --mx: 0; --my: 0;
+  --title-y: 0px; --title-scale: 1; --title-opacity: 1;
+  --intro-copy-y: 0px; --intro-copy-opacity: 1;
+  --panel2-opacity: 0; --panel2-y: calc(-50% + 58px);
+  --panel3-opacity: 0; --panel3-y: calc(-50% + 58px);
+  --contact-mini-opacity: 0;
+  --cosmic-opacity: 0;
+  --ink: #111411; --paper: #fdf1e1; --shadow: rgba(0, 0, 0, 0.32);
+  font-family: "Docktrin", sans-serif;
+  color: var(--paper);
+  background: #0b1110;
+  letter-spacing: 0;
+}
+
+* { box-sizing: border-box; }
+html { min-height: 100%; scroll-behavior: smooth; background: #0b1110; }
+body { min-height: 100%; margin: 0; overflow-x: clip; background: #04050a; }
+button { border: 0; font: inherit; }
+.site-shell { min-height: 100vh; }
+
+/* ============ Hero cinema (video-scrub background) ============ */
+
+.cinema-scroll { position: relative; height: calc(100vh + 6200px); }
+.stage { position: sticky; top: 0; height: 100vh; min-height: 620px; overflow: hidden; isolation: isolate; background: #7fb4d4; }
+
+.world, .site-header, .hero-title, .contact-mini, .intro-copy, .story-panel {
+  position: absolute;
+}
+
+.world { inset: 0; overflow: hidden; background: #7fb4d4; }
+
+/* No blur / brightness manipulation — the background stays fully visible
+   at all times, including while text is on screen. */
+.scrub-canvas {
+  position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; display: block;
+}
+
+.site-header {
+  top: 0; left: 0; right: 0; z-index: 10;
+  display: grid; grid-template-columns: minmax(260px, 1fr) auto minmax(260px, 1fr);
+  align-items: center; gap: 32px; padding: 32px; color: rgba(253, 241, 225, 0.86); pointer-events: auto;
+}
+.site-logo {
+  justify-self: start; font-family: "Blood Crow", cursive; font-size: 24px; font-weight: 500;
+  color: rgba(253, 241, 225, 0.92); text-decoration: none; white-space: nowrap;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
+}
+.site-nav { display: flex; justify-content: center; gap: clamp(24px, 2.2vw, 44px); }
+.site-nav a, .language-switcher {
+  color: rgba(253, 241, 225, 0.86); font-weight: 700; line-height: 1;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45); text-decoration: none;
+}
+.site-nav a { font-size: 20px; font-weight: 400; }
+.language-switcher {
+  justify-self: end; display: inline-flex; align-items: center; gap: 5px;
+  padding: 0; background: transparent; font-size: 16px; cursor: pointer;
+}
+.language-switcher span { display: inline-flex; line-height: 1; }
+
+/* ---- Text content: styled with color / weight / text-shadow only.
+   No background fill, blur, or overlay sits behind any of it. ---- */
+
+.hero-title {
+  z-index: 7; left: 50%; top: clamp(122px, 19vh, 205px); width: min(94vw, 1780px); margin: 0;
+  color: #fdf1e1; font-family: "Blood Crow", cursive; font-size: 14rem; font-weight: 500;
+  line-height: 0.78; text-align: center;
+  text-shadow: 0 6px 34px rgba(0, 0, 0, 0.55), 0 2px 10px rgba(0, 0, 0, 0.45);
+  transform: translate3d(-50%, var(--title-y), 0) scale(var(--title-scale));
+  opacity: var(--title-opacity); will-change: transform, opacity;
+}
+
+.intro-copy {
+  z-index: 9; left: 50%; bottom: clamp(56px, 28vh, 400px); width: min(560px, calc(100vw - 40px));
+  text-align: center; transform: translate3d(-50%, var(--intro-copy-y), 0);
+  opacity: var(--intro-copy-opacity); will-change: transform, opacity;
+}
+.intro-copy p {
+  margin: 0 auto; max-width: 560px; color: #fdf1e1; font-size: 1.18rem; font-weight: 500;
+  line-height: 1.18; text-shadow: 0 2px 20px rgba(0, 0, 0, 0.55), 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+.hero-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 26px; }
+.hero-tags span {
+  min-height: 42px; display: inline-flex; align-items: center; justify-content: center;
+  padding: 0 25px; color: var(--ink); border-radius: 999px; background: #fdf1e1;
+  font-size: 0.98rem; font-weight: 500; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+.story-panel {
+  z-index: 10; left: 50%; top: 45%; width: min(760px, calc(100vw - 42px)); text-align: center;
+  pointer-events: none; transform: translate3d(-50%, -50%, 0); will-change: transform, opacity;
+}
+.story-panel h2 {
+  margin: 0; color: #fdf1e1; font-family: "Blood Crow", cursive; font-size: 4.75rem; font-weight: 500;
+  line-height: 0.95; text-shadow: 0 16px 40px var(--shadow), 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+.story-panel p {
+  width: min(520px, 100%); margin: 26px auto 0; color: #fdf1e1; font-size: 1.14rem;
+  font-weight: 500; line-height: 1.18; text-shadow: 0 2px 20px rgba(0, 0, 0, 0.55), 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+.story-panel-bridge { top: 60%; opacity: var(--panel2-opacity); transform: translate3d(-50%, var(--panel2-y), 0); }
+.story-panel-bazaar { top: 29%; opacity: var(--panel3-opacity); transform: translate3d(-50%, var(--panel3-y), 0); }
+
+.facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 86px; width: min(470px, 100%); margin: 72px auto 0; }
+.facts dt {
+  color: #fdf1e1; font-family: "Blood Crow", cursive; font-size: 4.2rem; font-weight: 500;
+  line-height: 0.9; text-shadow: 0 14px 36px var(--shadow), 0 4px 14px rgba(0, 0, 0, 0.5);
+}
+.facts dd { margin: 18px 0 0; color: #fdf1e1; font-size: 1rem; font-weight: 500; line-height: 1.14; text-shadow: 0 2px 20px rgba(0, 0, 0, 0.55), 0 1px 6px rgba(0, 0, 0, 0.4); }
+
+/* ============ Cosmic reveal (Projects / Experience cue) ============ */
+/* Soft additive glows only — no dark layer covers the background. */
+
+.cosmic-overlay {
+  position: absolute; inset: 0; z-index: 1; overflow: hidden; pointer-events: none;
+  opacity: var(--cosmic-opacity, 0);
+  will-change: opacity;
+}
+.cosmic-glow {
+  position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.45; will-change: transform;
+  mix-blend-mode: screen;
+}
+.cosmic-glow-a {
+  width: 520px; height: 520px; left: -140px; top: 8%;
+  background: radial-gradient(circle, #7c5cff, transparent 70%);
+  animation: floatBlobA 22s ease-in-out infinite;
+}
+.cosmic-glow-b {
+  width: 600px; height: 600px; right: -180px; bottom: 4%;
+  background: radial-gradient(circle, #22d3ff, transparent 70%);
+  animation: floatBlobB 26s ease-in-out infinite;
+}
+@keyframes floatBlobA { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(50px, 60px, 0); } }
+@keyframes floatBlobB { 0%, 100% { transform: translate3d(0, 0, 0); } 50% { transform: translate3d(-60px, -40px, 0); } }
+
+.cosmic-stars {
+  position: absolute; inset: -10%; opacity: 0.5; mix-blend-mode: screen;
+  background-image:
+    radial-gradient(1.6px 1.6px at 20px 30px, #fff, transparent),
+    radial-gradient(1.1px 1.1px at 120px 80px, #fff, transparent),
+    radial-gradient(1.6px 1.6px at 60px 150px, #fff, transparent),
+    radial-gradient(1.1px 1.1px at 200px 220px, #fff, transparent),
+    radial-gradient(1.3px 1.3px at 260px 40px, #fff, transparent),
+    radial-gradient(1.1px 1.1px at 320px 180px, #fff, transparent);
+  background-repeat: repeat;
+  background-size: 360px 280px;
+  animation: starDrift 110s linear infinite;
+}
+@keyframes starDrift { from { background-position: 0 0; } to { background-position: -720px 560px; } }
+
+/* ============ Portfolio cards (Projects / Skills / Experience / Education) ============ */
+
+.duo-pair {
+  position: absolute; inset: 0; z-index: 4;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(24px, 8vw, 150px);
+  pointer-events: none;
+}
+
+.duo-card {
+  width: min(420px, 38vw);
+  opacity: var(--duo-op, 0);
+  transform: translate3d(var(--duo-tx, 0), var(--duo-ty, 0), 0) scale(var(--duo-scale, 0.9));
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+.duo-card-inner {
+  position: relative; padding: 34px 32px; border-radius: 28px; overflow: hidden;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  animation: cardFloat 6.5s ease-in-out infinite;
+}
+.duo-card-inner::before {
+  content: ""; position: absolute; top: -40%; left: -25%; width: 60%; height: 180%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.22), transparent 60%);
+  transform: rotate(12deg); pointer-events: none;
+}
+@keyframes cardFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+.duo-eyebrow, .duo-title, .duo-body, .duo-tags {
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.duo-card.is-in .duo-eyebrow, .duo-card.is-in .duo-title,
+.duo-card.is-in .duo-body, .duo-card.is-in .duo-tags { opacity: 1; transform: translateY(0); }
+
+.duo-eyebrow {
+  position: relative; display: block; margin-bottom: 10px; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase; color: #9fefff; transition-delay: 0.4s;
+}
+.duo-title {
+  position: relative; margin: 0 0 14px; color: #fff; font-family: "Blood Crow", cursive;
+  font-size: clamp(1.5rem, 2.3vw, 2.15rem); line-height: 1.05;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4); transition-delay: 0.4s;
+}
+.duo-body {
+  position: relative; color: rgba(255, 255, 255, 0.82); font-size: 15px; line-height: 1.55;
+  transition-delay: 0.6s;
+}
+.duo-body ul { margin: 0; padding-left: 18px; }
+.duo-body li { margin-bottom: 4px; }
+.duo-body p { margin: 0; }
+.duo-tags {
+  position: relative; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; transition-delay: 0.8s;
+}
+.duo-tags span {
+  padding: 6px 14px; border-radius: 999px; font-size: 12px; color: #e8fbff;
+  background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ============ Contact card ============ */
+/* Same visual language as the portfolio cards above: same padding, radius,
+   border, shadow, glass fill and float animation — just a different slot
+   and content (action buttons instead of raw contact details). */
+
+.contact-mini {
+  z-index: 9; left: 32px; bottom: 32px; width: min(420px, 38vw); margin: 0;
+  opacity: var(--contact-mini-opacity);
+  transform: translate3d(0, calc((1 - var(--contact-mini-opacity)) * 22px), 0);
+  pointer-events: none; will-change: transform, opacity;
+}
+.contact-mini.is-visible { pointer-events: auto; }
+
+.contact-mini-inner {
+  position: relative; padding: 34px 32px; border-radius: 28px; overflow: hidden;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  backdrop-filter: blur(22px) saturate(160%);
+  -webkit-backdrop-filter: blur(22px) saturate(160%);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  animation: cardFloat 6.5s ease-in-out infinite;
+}
+.contact-mini-inner::before {
+  content: ""; position: absolute; top: -40%; left: -25%; width: 60%; height: 180%;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.22), transparent 60%);
+  transform: rotate(12deg); pointer-events: none;
+}
+
+.contact-mini .duo-eyebrow,
+.contact-mini .duo-title,
+.contact-mini .duo-body {
+  opacity: 1; transform: none; transition: none;
+}
+
+.contact-actions {
+  position: relative; display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px;
+}
+.contact-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 12px 22px; border-radius: 999px; font-size: 14px; font-weight: 600;
+  text-decoration: none; line-height: 1; white-space: nowrap;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, background 0.3s ease;
+  pointer-events: auto;
+}
+.contact-btn-primary {
+  color: #04141a; background: #9fefff;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
+}
+.contact-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 38px rgba(0, 0, 0, 0.34); }
+.contact-btn-secondary {
+  color: #fdf1e1; background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(253, 241, 225, 0.45);
+}
+.contact-btn-secondary:hover { transform: translateY(-2px); background: rgba(255, 255, 255, 0.14); }
+
+@media (max-width: 1100px) {
+  .hero-title { top: 15vh; font-size: 7.5rem; }
+  .story-panel h2 { font-size: 3.2rem; }
+  .facts { gap: 34px; margin-top: 44px; }
+  .facts dt { font-size: 3.2rem; }
+  .duo-card, .contact-mini { width: min(360px, 42vw); }
+  .duo-card-inner, .contact-mini-inner { padding: 28px 24px; }
+}
+
+@media (max-width: 640px) {
+  .stage { min-height: 640px; }
+  .site-header { grid-template-columns: 1fr auto; gap: 18px; padding: 24px; }
+  .site-nav { grid-column: 1 / -1; grid-row: 2; justify-content: flex-start; gap: 18px; overflow-x: auto; scrollbar-width: none; }
+  .site-nav::-webkit-scrollbar { display: none; }
+  .hero-title { top: 16vh; font-size: 4.5rem; }
+  .intro-copy { bottom: 42px; }
+  .intro-copy p, .story-panel p { font-size: 1rem; }
+  .hero-tags { gap: 8px; }
+  .hero-tags span { min-height: 38px; padding: 0 16px; font-size: 0.88rem; }
+  .story-panel { top: 42%; }
+  .story-panel-bazaar { top: 26%; }
+  .story-panel h2 { font-size: 2.45rem; }
+  .facts { gap: 18px; margin-top: 34px; }
+  .facts dt { font-size: 2.5rem; }
+
+  .contact-mini { left: 16px; bottom: 16px; width: min(280px, 78vw); }
+  .contact-mini-inner { padding: 20px 18px; border-radius: 22px; }
+  .contact-mini .duo-title { font-size: 1.3rem; margin-bottom: 8px; }
+  .contact-mini .duo-body { font-size: 13px; }
+  .contact-actions { gap: 8px; margin-top: 16px; }
+  .contact-btn { padding: 10px 16px; font-size: 12.5px; }
+
+  .duo-pair { padding: 0 16px; flex-direction: row; align-items: center; }
+  .duo-card { width: 45vw; }
+  .duo-card-inner { padding: 18px 16px; border-radius: 20px; }
+  .duo-title { font-size: 1.1rem; margin-bottom: 8px; }
+  .duo-body { font-size: 12.5px; }
+  .duo-eyebrow { font-size: 10px; margin-bottom: 6px; }
+  .duo-tags { margin-top: 10px; gap: 6px; }
+  .duo-tags span { padding: 4px 10px; font-size: 10px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-title, .intro-copy, .story-panel, .contact-mini-inner, .duo-card-inner, .cosmic-glow, .cosmic-stars, .cosmic-overlay { animation: none; transition: none; }
+}
