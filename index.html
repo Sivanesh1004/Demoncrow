@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sivanesh S | Interactive Portfolio</title>
-  <meta name="description" content="Cinematic portfolio for Sivanesh S - Computer Science Engineer & Software Developer." />
+  <title>Sivanesh S | Java Full Stack Developer</title>
+  <meta name="description" content="Sivanesh S - Java Full Stack Developer. I build structured software, solve real-world problems, and turn ideas into reliable systems." />
   <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,600;0,700;0,800;0,900;1,500;1,700&family=Alegreya+SC:wght@700;800;900&family=Roboto+Slab:wght@400;500;600;700&family=Zilla+Slab:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <script src="script.js" defer></script>
 </head>
@@ -15,6 +18,7 @@
       <div class="stage">
         <div class="world">
           <canvas class="scrub-canvas" id="scrubCanvas" aria-hidden="true"></canvas>
+          <div class="cinema-vignette" aria-hidden="true"></div>
 
           <header class="site-header" aria-label="Primary navigation">
             <a class="site-logo" href="#cinema">Sivanesh S</a>
@@ -24,83 +28,16 @@
             </button>
           </header>
 
-          <h1 class="hero-title">SIVANESH</h1>
+          <h1 class="hero-title">SIVANESH S</h1>
 
-          <div class="cosmic-overlay" id="projects" aria-hidden="true">
-            <div class="cosmic-glow cosmic-glow-a"></div>
-            <div class="cosmic-glow cosmic-glow-b"></div>
-            <div class="cosmic-stars"></div>
-          </div>
-
-          <div class="duo-pair duo-pair-1">
-            <article class="duo-card duo-card-left" data-card="A">
-              <div class="duo-card-inner">
-                <span class="duo-eyebrow">Portfolio</span>
-                <h3 class="duo-title">Projects</h3>
-                <div class="duo-body">
-                  <ul>
-                    <li>Task Management System</li>
-                    <li>Web Vulnerability Scanner</li>
-                    <li>Bulk Email Automation</li>
-                  </ul>
-                </div>
-                <div class="duo-tags">
-                  <span>Java</span><span>Spring Boot</span><span>MySQL</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="duo-card duo-card-right" data-card="B">
-              <div class="duo-card-inner">
-                <span class="duo-eyebrow">Technical Skills</span>
-                <h3 class="duo-title">Skills</h3>
-                <div class="duo-body">
-                  <p>Core languages, frameworks, and tooling used day to day.</p>
-                </div>
-                <div class="duo-tags">
-                  <span>Java</span><span>SQL</span><span>HTML</span><span>CSS</span><span>Git</span><span>GitHub</span>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <div class="duo-pair duo-pair-2">
-            <article class="duo-card duo-card-left" data-card="C">
-              <div class="duo-card-inner">
-                <span class="duo-eyebrow">Experience</span>
-                <h3 class="duo-title">Work Experience</h3>
-                <div class="duo-body">
-                  <p>Cybersecurity Intern<br />NEXTSKILLS Technologies Pvt. Ltd.<br />July 2025</p>
-                </div>
-                <div class="duo-tags">
-                  <span>Security</span><span>Automation</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="duo-card duo-card-right" data-card="D">
-              <div class="duo-card-inner">
-                <span class="duo-eyebrow">Education</span>
-                <h3 class="duo-title">Education</h3>
-                <div class="duo-body">
-                  <p>B.E. Computer Science and Engineering<br />University College of Engineering, BIT Campus, Trichy<br />2022 – 2026</p>
-                </div>
-                <div class="duo-tags">
-                  <span>2022 – 2026</span>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <!-- Contact: now a full premium card, matching the duo-card design system.
-               Raw email / GitHub URL are no longer printed as text — action buttons
-               open the mail client and the GitHub profile instead. -->
-          <aside class="contact-mini" id="contact" aria-label="Contact" data-card="E">
+          <!-- Contact: Mini card at bottom left -->
+          <aside class="contact-mini" id="contact" aria-label="Contact">
             <div class="contact-mini-inner">
               <span class="duo-eyebrow">Get In Touch</span>
-              <h3 class="duo-title">Contact</h3>
-              <div class="duo-body">
-                <p>Open to opportunities, collaborations, and a good technical conversation.</p>
+              <h3 class="contact-title">SIVANESH S</h3>
+              <div class="contact-body">
+                <p><strong>Java Full Stack Developer</strong><br />B.E. CSE &bull; BIT Campus, Trichy (2022 — 2026)</p>
+                <p class="contact-sub">Open to software engineering opportunities, collaborations, and building impactful systems.</p>
               </div>
               <div class="contact-actions">
                 <a class="contact-btn contact-btn-primary" href="mailto:sivaneshsivan18@gmail.com">
@@ -114,33 +51,92 @@
           </aside>
         </div>
 
+        <!-- 1. HERO INTRO -->
         <section class="intro-copy" aria-label="Sivanesh overview">
-          <p>Motivated Computer Science undergraduate with hands-on experience in Java Full Stack Development, MySQL, and workflow automation.</p>
+          <div class="hero-role-badge">Java Full Stack Developer</div>
+          <p>I build structured software, solve real-world problems, and turn ideas into reliable systems.</p>
           <div class="hero-tags" aria-label="Core competencies">
-            <span>Core Java</span>
+            <span>JAVA</span>
+            <span>SPRING BOOT</span>
+            <span>MYSQL</span>
             <span>REST APIs</span>
-            <span>n8n Automation</span>
+            <span>AUTOMATION</span>
           </div>
         </section>
 
-        <section class="story-panel story-panel-bridge" id="skills" aria-label="Technical skills details">
-          <h2>Engineering Foundation</h2>
-          <p>Proficient in Object-Oriented Programming, backend technologies, database design, and web application security.</p>
-          <dl class="facts">
-            <div>
-              <dt>2026</dt>
-              <dd>Graduating B.E. CS Undergraduate</dd>
-            </div>
-            <div>
-              <dt>100%</dt>
-              <dd>Manual Email Dispatch Effort Reduced</dd>
-            </div>
-          </dl>
+        <!-- 2. S — SYSTEMS -->
+        <section class="story-panel story-panel-systems" id="systems" aria-label="S - Systems">
+          <span class="story-panel-eyebrow">S — SYSTEMS</span>
+          <h2>SYSTEMS</h2>
+          <p>Software started making sense when I stopped looking at code as individual lines and started seeing it as a system.</p>
+          <p class="story-panel-sub">Java became the foundation for my backend logic. Object-Oriented Programming helped me structure that logic. SQL and MySQL gave the applications a way to work with real data, while REST APIs connected different parts of the system.</p>
+          <p class="story-panel-highlight">My focus is on building software that is structured, maintainable, and designed around the actual requirements of the problem.</p>
         </section>
 
-        <section class="story-panel story-panel-bazaar" id="experience" aria-label="Experience details">
-          <h2>Practical Systems & Work</h2>
-          <p>Cybersecurity Intern at NEXTSKILLS Technologies. Building scalable software solutions, automated workflows, and security tools.</p>
+        <!-- 3. I — IDEAS -->
+        <section class="story-panel story-panel-ideas" id="ideas" aria-label="I - Ideas">
+          <span class="story-panel-eyebrow">I — IDEAS</span>
+          <h2>IDEAS</h2>
+          <p>A requirement is only the beginning. I turn ideas into working applications by breaking problems into smaller parts, designing the logic, connecting the data, and building functionality around the user's needs.</p>
+          <p class="story-panel-sub">From a restaurant reservation platform to a security scanner and an automated email workflow, each project gave me a different problem to understand and solve.</p>
+          <p class="story-panel-highlight">The goal has always been the same: Turn an idea into something that actually works.</p>
+        </section>
+
+        <!-- 4. V — VISION -->
+        <section class="story-panel story-panel-vision" id="vision" aria-label="V - Vision">
+          <span class="story-panel-eyebrow">V — VISION</span>
+          <h2>VISION</h2>
+          <p class="story-lead">Building software is not only about making a feature work. My projects have pushed me to think about reliability, security, automation, and the way different components work together.</p>
+          <div class="story-project-list">
+            <div class="story-project-item">
+              <strong>O2 Garden Restaurant Management System:</strong> Full-stack client requirement with reservation management, availability tracking, JWT authentication, role-based access, menu management, customer inquiries, and administrative workflows.
+            </div>
+            <div class="story-project-item">
+              <strong>Automated Vulnerability Scanner:</strong> Systematically detects SQL Injection, XSS, and open ports while reducing manual assessment effort by 60%.
+            </div>
+          </div>
+          <p class="story-panel-highlight">Different problems. Different systems. One approach: Understand the problem first. Build the solution around it.</p>
+          <div class="story-tags">
+            <span>O2 Garden</span><span>Vulnerability Scanner</span><span>JWT Auth</span><span>Web Security</span>
+          </div>
+        </section>
+
+        <!-- 5. A — AUTOMATION -->
+        <section class="story-panel story-panel-automation" id="automation" aria-label="A - Automation">
+          <span class="story-panel-eyebrow">A — AUTOMATION</span>
+          <h2>AUTOMATION</h2>
+          <p class="story-lead">Repetitive work is a problem too.</p>
+          <div class="story-project-list">
+            <div class="story-project-item">
+              <strong>NEXTSKILLS Technologies Internship:</strong> Worked with n8n to design a Bulk Email Automation system that reduced manual email effort by over 70%.
+            </div>
+            <div class="story-project-item">
+              <strong>Bash Command Learning Hub:</strong> Structured hub with categorized examples to make command-line learning and onboarding easier.
+            </div>
+            <div class="story-project-item">
+              <strong>Bulk Email Workflow:</strong> Developed a reusable workflow capable of handling scheduling, routing, and delivery.
+            </div>
+          </div>
+          <p class="story-panel-highlight">Good engineering doesn't always mean doing more. Sometimes it means making the system do the work.</p>
+          <div class="story-tags">
+            <span>n8n</span><span>Bulk Email (&gt;70%)</span><span>Bash Hub</span><span>Workflow Routing</span>
+          </div>
+        </section>
+
+        <!-- 6. N — NEXT & EDUCATION -->
+        <section class="story-panel story-panel-next" id="next" aria-label="N - Next">
+          <span class="story-panel-eyebrow">N — NEXT</span>
+          <h2>NEXT</h2>
+          <p class="story-lead">I’m now ready to take the next step as a Software Engineer.</p>
+          <p class="story-panel-sub">My foundation is built around Java, backend development, MySQL, SQL, REST APIs, problem solving, Git, GitHub, and automation. I want to keep working on real problems, build reliable systems, and continuously improve the way I approach software development.</p>
+          <p class="story-panel-highlight">I don't want to simply write code that works. I want to build systems that make sense.</p>
+          <div class="story-education-info">
+            <p class="edu-degree"><strong>B.E. Computer Science and Engineering</strong></p>
+            <p class="edu-campus">University College of Engineering — BIT Campus, Trichy (2022 — 2026)</p>
+          </div>
+          <div class="story-tags">
+            <span>Software Engineer</span><span>Java Backend</span><span>MySQL</span><span>REST APIs</span><span>Git &amp; GitHub</span>
+          </div>
         </section>
       </div>
     </section>

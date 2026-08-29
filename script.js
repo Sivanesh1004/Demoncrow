@@ -48,27 +48,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const contactMini = document.querySelector(".contact-mini");
     const canvas = document.getElementById("scrubCanvas");
     const ctx = canvas ? canvas.getContext("2d", { alpha: false }) : null;
+    const panelSystems = document.getElementById("systems");
+    const panelIdeas = document.getElementById("ideas");
+    const panelVision = document.getElementById("vision");
+    const panelAutomation = document.getElementById("automation");
+    const panelNext = document.getElementById("next");
 
-    const cosmicOverlay = document.querySelector(".cosmic-overlay");
-    const cardA = document.querySelector('[data-card="A"]');
-    const cardB = document.querySelector('[data-card="B"]');
-    const cardC = document.querySelector('[data-card="C"]');
-    const cardD = document.querySelector('[data-card="D"]');
-
-    // Card position/opacity for the left/right duo-card reveal.
-    function setCard(card, side, enter, exit) {
-      if (!card) return;
-      const dir = side === "left" ? -1 : 1;
-      const tx = lerp(dir * 60, 0, enter) + exit * dir * 18;
-      const ty = (1 - enter) * 18 - exit * 10;
-      const scale = lerp(0.9, 1, enter) - exit * 0.05;
-      const opacity = clamp(enter) * (1 - exit);
-
-      card.style.setProperty("--duo-tx", `${tx.toFixed(2)}vw`);
-      card.style.setProperty("--duo-ty", `${ty.toFixed(2)}px`);
-      card.style.setProperty("--duo-scale", scale.toFixed(4));
-      card.style.setProperty("--duo-op", opacity.toFixed(4));
-      card.classList.toggle("is-in", enter > 0.55 && exit < 0.5);
+    function applyStoryPanel(frame, cssPrefix, element) {
+      const opacity = frame.active * (1 - frame.exit);
+      const y = `calc(-50% + ${(-frame.exit * 86 + (1 - frame.enter) * 58).toFixed(4)}px)`;
+      root.style.setProperty(`--panel-${cssPrefix}-opacity`, opacity.toFixed(4));
+      root.style.setProperty(`--panel-${cssPrefix}-y`, y);
+      if (element) {
+        element.classList.toggle("is-active", opacity > 0.35);
+      }
     }
 
     const FRAME_COUNT = 292;
@@ -153,31 +146,25 @@ document.addEventListener("DOMContentLoaded", () => {
       const totalProgress = clamp(smoothScroll / maxScrollDistance());
       renderFrame(totalProgress * (FRAME_COUNT - 1));
 
-      // Text-panel timing windows — these now only drive opacity/position for
-      // the text itself. No blur, brightness, or shade is applied to the
-      // background behind them, so the video stays fully visible throughout.
-      const frame2 = segmentInOut(smoothScroll, 560, 900, 1300, 1620);
-      const frame3 = segmentInOut(smoothScroll, 1760, 2140, 2540, 2700);
-      const introExit = smoothstep(90, 650, smoothScroll);
-      const panel2Opacity = frame2.active * (1 - frame2.exit);
-      const panel3Opacity = frame3.active * (1 - frame3.exit);
-      const totalProgressForFade = totalProgress;
-      const contactMiniOpacity = smoothstep(0.93, 0.99, totalProgressForFade);
+      // Hero exit
+      const introExit = smoothstep(80, 580, smoothScroll);
 
-      // ---- Duo-card reveal: starts right after "Practical Systems & Work" (frame3,
-      // which wraps up around 2700px), finishes well before the video's closing
-      // frames (~5983px onward). All still keyed off the same smoothScroll. ----
-      const cosmic = segmentInOut(smoothScroll, 2750, 3200, 5350, 5750);
-      const enter1 = smoothstep(2900, 3350, smoothScroll);
-      const exit1 = smoothstep(3900, 4350, smoothScroll);
-      const enter2 = smoothstep(3900, 4350, smoothScroll);
-      const exit2 = smoothstep(4900, 5600, smoothScroll);
+      // Uniform timing windows across all 5 story panels
+      const frameSystems = segmentInOut(smoothScroll, 500, 800, 1350, 1650);
+      const frameIdeas = segmentInOut(smoothScroll, 1600, 1900, 2450, 2750);
+      const frameVision = segmentInOut(smoothScroll, 2700, 3000, 3550, 3850);
+      const frameAutomation = segmentInOut(smoothScroll, 3800, 4100, 4650, 4950);
+      const frameNext = segmentInOut(smoothScroll, 4900, 5200, 5750, 6050);
 
-      if (cosmicOverlay) root.style.setProperty("--cosmic-opacity", cosmic.active.toFixed(4));
-      setCard(cardA, "left", enter1, exit1);
-      setCard(cardB, "right", enter1, exit1);
-      setCard(cardC, "left", enter2, exit2);
-      setCard(cardD, "right", enter2, exit2);
+      // Contact mini popup fade-in near the end
+      const contactMiniOpacity = smoothstep(0.91, 0.98, totalProgress);
+
+      // Apply consistent transitions to all sections
+      applyStoryPanel(frameSystems, "systems", panelSystems);
+      applyStoryPanel(frameIdeas, "ideas", panelIdeas);
+      applyStoryPanel(frameVision, "vision", panelVision);
+      applyStoryPanel(frameAutomation, "automation", panelAutomation);
+      applyStoryPanel(frameNext, "next", panelNext);
 
       root.style.setProperty("--mx", reduceMotion.matches ? "0" : mouseX.toFixed(4));
       root.style.setProperty("--my", reduceMotion.matches ? "0" : mouseY.toFixed(4));
@@ -188,14 +175,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       root.style.setProperty("--intro-copy-y", `${(introExit * 90).toFixed(4)}px`);
       root.style.setProperty("--intro-copy-opacity", (1 - introExit).toFixed(4));
-      root.style.setProperty("--panel2-opacity", panel2Opacity.toFixed(4));
-      root.style.setProperty("--panel2-y", `calc(-50% + ${(-frame2.exit * 86 + (1 - frame2.enter) * 58).toFixed(4)}px)`);
-      root.style.setProperty("--panel3-opacity", panel3Opacity.toFixed(4));
-      root.style.setProperty("--panel3-y", `calc(-50% + ${(-frame3.exit * 86 + (1 - frame3.enter) * 58).toFixed(4)}px)`);
 
       if (contactMini) {
         root.style.setProperty("--contact-mini-opacity", contactMiniOpacity.toFixed(4));
-        const visible = contactMiniOpacity > 0.5;
+        const visible = contactMiniOpacity > 0.4;
         contactMini.classList.toggle("is-visible", visible);
         contactMini.classList.toggle("is-in", visible);
       }
